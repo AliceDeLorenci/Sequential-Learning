@@ -46,7 +46,7 @@ if __name__ == '__main__':
     T = 1000
     repeat = 1000
     p = [0.85, 0.95]
-    folder = 'question2h2'
+    folder = 'question2htest'
 
     mean_regret = []
     s2_list = []
