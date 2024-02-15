@@ -3,7 +3,8 @@ import numpy as np
 
 from algorithms import *
         
-# Usage: python3 question2g.py <folder> <lT> <uT>
+# Usage: python3 question2g.py <folder> <lT> <uT> <p1> <p2> 
+# obs: the arguments <p1> and <p2> are optional
 if __name__ == '__main__':
 
     # Folder to save the results
@@ -13,11 +14,19 @@ if __name__ == '__main__':
     lT = int( sys.argv[2] ) 
     uT = int( sys.argv[3] )
 
+    # Success probabilities of the arms
+    if len(sys.argv) > 4:
+        p1 = float( sys.argv[4] )
+        p2 = float( sys.argv[5] )
+    else:
+        p1 = 0.5
+        p2 = 0.6
+
     # Number of repetitions for each T
     repeat = 1000
 
     K = 2           # Number of arms
-    p = [0.5, 0.6]  # Success probabilities of the arms
+    p = [p1, p2]    # Success probabilities of the arms
     s2 = 1/4        # Subgaussian parameter
 
     mean_regret = []

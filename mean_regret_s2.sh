@@ -2,6 +2,7 @@
 
 # Usage: bash mean_regret_s2.sh <python_script> <folder> <p1> <p2>
 # <folder> is the folder where the results will be saved
+# <p1> and <p2> are the success probabilities of the arms
 
 mkdir $2 -p
 
