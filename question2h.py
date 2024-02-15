@@ -52,7 +52,7 @@ if __name__ == '__main__':
     regret = []
     for i in range(repeat):
         # print("T: {:4d} -- Repetition: {:4d}/{}".format(T, i+1, repeat), end='\r')
-        bb = BernoulliBandit(2, [0.5, 0.6])
+        bb = BernoulliBandit(2, [0.85, 0.95])
         alg = UCB(2, s2)
         for t in range(T):
             k = alg.chooseArm()
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     mean_regret.append( np.mean(regret) )
     s2_list.append(s2)
     
-    np.savez('question2h1/mean_regret_{}'.format(s2), s2_list=s2_list, mean_regret=mean_regret)
+    np.savez('question2h2/mean_regret_{}'.format(s2), s2_list=s2_list, mean_regret=mean_regret)
