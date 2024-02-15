@@ -3,7 +3,7 @@ import numpy as np
 
 from algorithms import *
         
-# Usage: python3 question3d.py <folder> <lT> <uT>
+# Usage: python3 question5d.py <folder> <lT> <uT>
 if __name__ == '__main__':
 
     # Folder to save the results
