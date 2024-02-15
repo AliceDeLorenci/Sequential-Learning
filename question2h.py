@@ -41,7 +41,7 @@ class UCB():
 
 if __name__ == '__main__':
 
-    s2 = int( sys.argv[1] )
+    s2 = float( sys.argv[1] )
 
     T = 1000
     repeat = 1000
