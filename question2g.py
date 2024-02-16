@@ -4,7 +4,7 @@ import numpy as np
 from algorithms import *
         
 # Usage: python3 question2g.py <folder> <lT> <uT> <p1> <p2> <s2>
-# obs: the arguments <p1>, <p2> and <s2> git stare optional
+# obs: the arguments <p1>, <p2> and <s2> git are optional
 if __name__ == '__main__':
 
     # Folder to save the results
