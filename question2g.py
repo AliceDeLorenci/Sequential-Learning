@@ -3,8 +3,8 @@ import numpy as np
 
 from algorithms import *
         
-# Usage: python3 question2g.py <folder> <lT> <uT> <p1> <p2> 
-# obs: the arguments <p1> and <p2> are optional
+# Usage: python3 question2g.py <folder> <lT> <uT> <p1> <p2> <s2>
+# obs: the arguments <p1>, <p2> and <s2> are optional
 if __name__ == '__main__':
 
     # Folder to save the results
@@ -21,13 +21,18 @@ if __name__ == '__main__':
     else:
         p1 = 0.5
         p2 = 0.6
+    
+    # Subgaussian parameter
+    if len(sys.argv) > 6:
+        s2 = float( sys.argv[6] )
+    else:
+        s2 = 1/4
 
     # Number of repetitions for each T
     repeat = 1000
 
     K = 2           # Number of arms
     p = [p1, p2]    # Success probabilities of the arms
-    s2 = 1/4        # Subgaussian parameter
 
     mean_regret = []
     T_list = []

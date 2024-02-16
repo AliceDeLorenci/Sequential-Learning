@@ -1,8 +1,9 @@
 # Bash script to run in parallel the simulations for different ranges of T
 
-# Usage: bash mean_regret_T.sh <python_script> <folder> <p1> <p2>
+# Usage: bash mean_regret_T.sh <python_script> <folder> <p1> <p2> <s2>
 # <folder> is the folder where the results will be saved
 # <p1> and <p2> are the success probabilities of the arms (optional)
+# <s2> is the sub-gaussianity parameter (optional)
 
 mkdir $2 -p
 
