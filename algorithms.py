@@ -97,3 +97,24 @@ class UCBV():
             # np.log(self.t+1) since t is starting from 0
             ucbv = self.cumulator/self.n + np.sqrt( 2*np.log(self.t+1)*self.xi*self.variance/self.n ) + 3*self.c*self.xi/self.n
             return np.argmax(ucbv)
+        
+class ThompsonSampling():
+    def __init__(self, K):
+        self.K = K                      # Number of arms
+        self.n = np.zeros(K)            # Number of times each arm was chosen
+        self.cumulator = np.zeros(K)    # Cumulative reward for each arm
+        self.t = 0
+    
+    def update(self, k, reward):
+        self.t += 1
+        self.n[k] += 1
+        self.cumulator[k] += reward
+    
+    def chooseArm(self):
+        if self.t == 0:
+            theta = np.random.rand(self.K)
+        else:
+            alpha = self.cumulator + 1
+            beta = self.n - self.cumulator + 1
+            theta = np.random.beta(alpha, beta)
+        return np.argmax(theta)
