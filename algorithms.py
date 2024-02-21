@@ -118,3 +118,4 @@ class ThompsonSampling():
             beta = self.n - self.cumulator + 1
             theta = np.random.beta(alpha, beta)
         return np.argmax(theta)
+    
