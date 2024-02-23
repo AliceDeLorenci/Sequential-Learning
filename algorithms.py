@@ -2,12 +2,15 @@ import numpy as np
 
 def simulate(bandit, algorithm, T):
         
+        actions = []
+
         for t in range(T):
             k = algorithm.chooseArm()
+            actions.append(k)
             reward = bandit.pullArm(k)
             algorithm.update(k, reward)
 
-        return bandit.regret( algorithm.n )
+        return bandit.regret( actions )
 
 class BernoulliBandit():
     def __init__(self, K, success_probs):
@@ -15,19 +18,20 @@ class BernoulliBandit():
         self.success_probs = success_probs          # Success probabilities of each arm
         self.optimal = np.argmax(success_probs)     # Index of the optimal arm
         self.optimal_prob = np.max(success_probs)   # Success probability of the optimal arm
+        self.suboptimality_gap = self.optimal_prob - self.success_probs # Suboptimality gap of each arm
     
     def pullArm(self, k):
         return np.random.rand() < self.success_probs[k] # Return 1 with probability success_probs[k]
     
-    def regret(self, n):
+    def regret(self, actions):
         """
-        Calculate the pseudo-regret.
+        Calculate the cummulative pseudo-regret.
 
         Args:
-            n (list): Number of times each arm was chosen
+            actions (list): List of actions chosen by the algorithm.
         """
-        T = np.sum(n)
-        return T * self.optimal_prob - np.sum( [n_k*self.success_probs[k] for k, n_k in enumerate(n)] )
+        instant_regret = self.suboptimality_gap[actions]
+        return np.cumsum(instant_regret)
     
 class FollowTheLeader():
     def __init__(self, K):

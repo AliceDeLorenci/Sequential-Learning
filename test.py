@@ -1,8 +1,0 @@
-import time
-import sys
-
-if __name__ == '__main__':
-
-    print(sys.argv)
-    # time.sleep(10)
-    # print('Hello, World!')
