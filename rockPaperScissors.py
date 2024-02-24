@@ -28,10 +28,10 @@ class OptimalAdversary():
         argmax = np.flatnonzero( expectedReward == expectedReward.max() )
         self.j = np.random.choice( argmax ) # adversary's action
 
-        print("p:", p)
-        print()
-        print(argmax)
-        print("j:", self.j)
+        # print("p:", p)
+        # print()
+        # print(argmax)
+        # print("j:", self.j)
 
         return self.j
 
@@ -40,9 +40,6 @@ class RPSFullInformation():
     def __init__(self, player, adversary):
 
         self.options = {0: "rock", 1: "paper", 2: "scissors"}    # equivalence between indexes and actions
-        self.L = np.array( [[0, 0.1, -0.1], 
-                            [-0.1, 0, 0.1], 
-                            [0.1, -0.1 , 0]] ) # loss matrix
         self.L = np.array( [[0, 1, -1], 
                             [-1, 0, 1], 
                             [1, -1 , 0]] ) # loss matrix
@@ -89,9 +86,9 @@ class RPSBandit():
     def __init__(self, player, adversary):
 
         self.options = {0: "rock", 1: "paper", 2: "scissors"}    # equivalence between indexes and actions
-        self.L = np.array( [[0, 1, -1], 
-                            [-1, 0, 1], 
-                            [1, -1 , 0]] ) # loss matrix
+        self.L = np.array( [[1/2, 1, 0], 
+                            [0, 1/2, 1], 
+                            [1, 0, 1/2]] ) # loss matrix
                 
         self.player = player
         self.adversary = adversary
@@ -114,8 +111,8 @@ class RPSBandit():
         self.qHistory.append(q)
 
         self.playerLoss.append( self.L[i, j] )
-        self.adversaryLoss.append( -self.L[i, j] )
+        self.adversaryLoss.append( self.L[j, i] )
 
         self.player.update( self.L[i, j] )
-        self.adversary.update( -self.L[i, j] )
+        self.adversary.update( self.L[j, i] )
         
